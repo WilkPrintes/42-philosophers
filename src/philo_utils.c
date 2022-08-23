@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 15:56:26 by wprintes          #+#    #+#             */
-/*   Updated: 2022/08/18 16:16:44 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:27:59 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	init_var(long *n1, int *n2, int *n3);
 static int	is_whitespace(const char c);
+void	ft_bzero(void *str, size_t n);
 
 long	ft_atoi(const char *str)
 {
@@ -52,4 +53,30 @@ static void	init_var(long *n1, int *n2, int *n3)
 static int	is_whitespace(const char c)
 {
 	return (c == ' ' || (c >= 9 && c <= 13));
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*result;
+
+	result = malloc(nmemb * size);
+	if (result == NULL)
+		return (NULL);
+	else
+		ft_bzero(result, nmemb * size);
+	return (result);
+}
+
+void	ft_bzero(void *str, size_t n)
+{
+	size_t			counter;
+	char			*str_p;
+
+	counter = 0;
+	str_p = str;
+	while (counter != n)
+	{
+		str_p[counter] = 0;
+		counter++;
+	}
 }

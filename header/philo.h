@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:56:10 by wprintes          #+#    #+#             */
-/*   Updated: 2022/08/18 16:46:42 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:41:26 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 typedef struct s_geral
 {
 	pthread_t		alive;
-	int		forks;
+	int		*forks;
+	int		total_fork;
 	int		death;
 	int		m_eat;
 	int		exit;
@@ -40,3 +41,10 @@ typedef struct s_philo
 } t_philo;
 
 long	ft_atoi(const char *str);
+void	*ft_calloc(size_t nmemb, size_t size);
+void all_philos(int c_philos, t_philo *philos, t_geral *geral);
+void init_geral(t_geral *geral, char **argv);
+time_t current_time(void);
+time_t passed_time(t_geral *geral);
+void *philo_func(void *parameter);
+void *alive_func(void *parameter);

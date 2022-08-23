@@ -6,25 +6,20 @@
 /*   By: wprintes <wprintes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:55:28 by wprintes          #+#    #+#             */
-/*   Updated: 2022/08/19 15:29:17 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/08/23 19:16:11 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-time_t current_time(void);
-void create_philo(t_philo *philo, t_geral *geral);
-void init_geral(t_geral *geral, char **argv);
-void *philo_func(void *parameter);
-void *alive_func(void *parameter);
-void all_philos(int c_philos, t_philo *philos, t_geral *geral);
+int valid_arguments(int argc, char **argv);
 
 int main(int argc, char **argv)
 {
 	t_philo *philos;
 	t_geral geral;
 	
-	if (argc >= 5 )
+	if (valid_arguments(argc, argv) == 0)
 	{
 		init_geral(&geral, argv);
 		philos = (t_philo *) malloc (sizeof (t_philo) * ft_atoi(argv[1]));
@@ -33,101 +28,47 @@ int main(int argc, char **argv)
 		pthread_join(geral.alive, NULL);	
 		pthread_mutex_destroy(&geral.lock);
 	}
-	else
-		printf("Invalid number of arguments\n");
-	return (0);
+	return (1);
 }
 
-void all_philos(int c_philos, t_philo *philos, t_geral *geral)
+int	ft_isdigit(char *c)
 {
 	int i;
 
 	i = 0;
-	while (i < c_philos)
+	while(c[i])
 	{
-		create_philo(&philos[i], geral);
-		philos[i].id = i;
-		pthread_create(&philos[i].thread, NULL, philo_func, &philos[i]);	
+		if (c[i] < 48 || c[i] > 57)
+			return (1);
 		i++;
 	}
+	return (0);
 }
 
-void *alive_func(void *parameter)
+int valid_arguments(int argc, char **argv)
 {
-	t_geral *geral;
-
-	geral = (t_geral *) parameter;
-	while (1)
+	int i;
+	
+	i = 1;
+	if (argc < 5)
 	{
-		pthread_mutex_lock(&geral->lock);
-		if (geral->death != 0)
-			break ;
-		pthread_mutex_unlock(&geral->lock);
+		printf("please insert ");
+		if (argc == 1)
+			printf("number_of_philosophers, time_to_die, time_to_eat, time_to_sleep");
+		if (argc == 2)
+			printf("time_to_die, time_to_eat, time_to_sleep");
+		if (argc == 3)
+			printf("time_to_eat, time_to_sleep");
+		if (argc == 4)
+			printf("time_to_sleep");
+		printf(".\n");
+		return (1);
 	}
-
-	pthread_detach(geral->alive);
-	return (NULL);
-}
-
-void *philo_func(void *parameter)
-{
-	t_philo *philo;
-	int ok;
-
-	philo = (t_philo *) parameter;
-	ok = 0;
-	while ((current_time() - philo->last_eat) < philo->geral->t_die)
+	while (argv[i])
 	{
-		pthread_mutex_lock(&philo->geral->lock);
-		if (philo->geral->forks >= 2)
-		{
-			philo->geral->forks -= 2;
-			ok = 1;
-		}
-		pthread_mutex_unlock(&philo->geral->lock);
-		if (ok == 1)
-		{
-			printf("philosopher %d take a fork in %lu\n", philo->id, current_time());
-			printf("philosopher %d is eating in %lu\n", philo->id, current_time());
-			usleep(philo->geral->t_eat);
-			pthread_mutex_lock(&philo->geral->lock);
-			philo->geral->forks += 2;
-			pthread_mutex_unlock(&philo->geral->lock);
-			philo->last_eat = current_time();
-			printf("philosopher %d is sleeping in %lu\n", philo->id, current_time());
-			usleep(philo->geral->t_sleep);
-			printf("philosopher %d is thinking in %lu\n", philo->id, current_time());
-			usleep(500);
-		}
+		if (ft_isdigit(argv[i]) == 1)
+			return(printf("Invalid type of arguments\n"));
+		i++;
 	}
-	printf("philosopher %d is dead in %lu\n", philo->id, current_time());
-	philo->geral->death = 1;
-	pthread_detach(philo->thread);
-	return (NULL);
-}
-
-time_t current_time(void)
-{
-	struct timeval times;
-
-	gettimeofday(&times, NULL);
-	return (times.tv_usec + times.tv_sec * 1000000);
-}
-
-void init_geral(t_geral *geral, char **argv)
-{
-	geral->forks = ft_atoi(argv[1]);
-	geral->death = 0;
-	geral->t_die = ft_atoi(argv[2]) * 1000;
-	geral->t_eat = ft_atoi(argv[3]) * 1000;
-	geral->t_sleep = ft_atoi(argv[4]) * 1000;
-	geral->t_init = current_time();
-	pthread_mutex_init(&geral->lock, NULL);
-}
-
-void create_philo(t_philo *philo, t_geral *geral)
-{
-	philo->eat = 0;
-	philo->geral = geral;
-	philo->last_eat = geral->t_init = current_time();
+	return (0);
 }
