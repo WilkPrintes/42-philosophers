@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:28:38 by wprintes          #+#    #+#             */
-/*   Updated: 2022/08/23 18:37:04 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:14:11 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void *alive_func(void *parameter)
 			break ;
 		pthread_mutex_unlock(&geral->lock);
 	}
-
 	pthread_detach(geral->alive);
 	return (NULL);
 }

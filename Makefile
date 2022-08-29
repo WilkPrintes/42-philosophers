@@ -36,6 +36,6 @@ norma:
 	@norminette ./
 
 leaks:
-	@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --trace-children=yes ./philosophers
+	@valgrind -q --tool=helgrind ./philo 2 200 100 100
 
 .PHONY: all fclean re
