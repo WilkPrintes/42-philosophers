@@ -1,9 +1,0 @@
-0 philosopher 0 take a fork
-0 philosopher 0 is eating
-200 philosopher 0 is sleeping
-200 philosopher 1 take a fork
-200 philosopher 1 is eating
-300 philosopher 0 is thinking
-302 philosopher 0 is dead
-400 philosopher 1 is sleeping
-500 philosopher 1 is thinking

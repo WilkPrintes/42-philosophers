@@ -10,7 +10,8 @@ INCLUDE		:=	$(foreach directory, $(HEADER_DIR), -I $(directory))
 
 SRC_DIR		:= ./src/
 
-SRC_FILE	:=	philo.c philo_utils.c init.c times.c thead_func.c
+SRC_FILE	:=	philo.c philo_utils.c init.c times.c \
+				thead_func.c ft_atoi.c core_utils.c
 
 SRC			:=	$(foreach file, $(SRC_FILE), $(SRC_DIR)$(file))
 
