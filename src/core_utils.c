@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 21:44:49 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/27 21:45:15 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/27 22:17:35 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	show_info(t_philo *philo, char *type)
 	if (philo->geral->death != 1)
 		printf("%lu philosopher", passed_time(philo->geral));
 	if (ft_strncmp(type, "take", 4) == 0 && philo->geral->death != 1)
-		printf(" %d has take a fork\n", philo->id);
+		printf(" %d has taken a fork\n", philo->id);
 	if (ft_strncmp(type, "eat", 3) == 0 && philo->geral->death != 1)
 		printf(" %d is eating\n", philo->id);
 	if (ft_strncmp(type, "sleep", 5) == 0 && philo->geral->death != 1)
@@ -54,7 +54,7 @@ void	show_info(t_philo *philo, char *type)
 	if (ft_strncmp(type, "dead", 4) == 0)
 	{
 		printf("%lu philosopher", passed_time(philo->geral));
-		printf(" %d is dead\n", philo->id);
+		printf(" %d is died\n", philo->id);
 	}
 	pthread_mutex_unlock(&philo->geral->lock);
 }
