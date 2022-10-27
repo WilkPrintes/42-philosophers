@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wprintes <wprintes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 15:56:26 by wprintes          #+#    #+#             */
-/*   Updated: 2022/08/23 18:27:59 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/24 23:52:21 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,33 @@ void	ft_bzero(void *str, size_t n)
 		str_p[counter] = 0;
 		counter++;
 	}
+}
+
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
+{
+	unsigned char	*str1_char;
+	unsigned char	*str2_char;
+	int				result;
+	size_t			counter;
+
+	str1_char = (unsigned char *) str1;
+	str2_char = (unsigned char *) str2;
+	result = 0;
+	counter = 0;
+	if (n == 0)
+		return (0);
+	while (counter < n && *str1_char != '\0' && *str2_char != '\0')
+	{
+		if (*str1_char != *str2_char)
+		{
+			result = *str1_char - *str2_char;
+			return (result);
+		}
+		counter++;
+		str1_char++;
+		str2_char++;
+	}
+	if (counter < n && (*str1_char == '\0' || *str2_char == '\0'))
+		result = *str1_char - *str2_char;
+	return (result);
 }

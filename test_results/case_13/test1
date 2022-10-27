@@ -1,0 +1,126 @@
+0 philosopher 1 take a fork
+0 philosopher 1 is eating
+0 philosopher 3 take a fork
+0 philosopher 3 is eating
+100 philosopher 3 is sleeping
+100 philosopher 1 is sleeping
+100 philosopher 0 take a fork
+100 philosopher 0 is eating
+100 philosopher 2 take a fork
+100 philosopher 2 is eating
+200 philosopher 1 is thinking
+200 philosopher 3 is thinking
+201 philosopher 2 is sleeping
+201 philosopher 0 is sleeping
+201 philosopher 4 take a fork
+201 philosopher 4 is eating
+202 philosopher 1 take a fork
+202 philosopher 1 is eating
+301 philosopher 2 is thinking
+301 philosopher 0 is thinking
+301 philosopher 4 is sleeping
+301 philosopher 3 take a fork
+301 philosopher 3 is eating
+302 philosopher 1 is sleeping
+303 philosopher 0 take a fork
+303 philosopher 0 is eating
+401 philosopher 4 is thinking
+402 philosopher 3 is sleeping
+402 philosopher 2 take a fork
+402 philosopher 2 is eating
+403 philosopher 1 is thinking
+403 philosopher 0 is sleeping
+403 philosopher 4 take a fork
+403 philosopher 4 is eating
+502 philosopher 3 is thinking
+502 philosopher 2 is sleeping
+502 philosopher 1 take a fork
+502 philosopher 1 is eating
+503 philosopher 0 is thinking
+503 philosopher 4 is sleeping
+504 philosopher 3 take a fork
+504 philosopher 3 is eating
+602 philosopher 2 is thinking
+602 philosopher 1 is sleeping
+603 philosopher 0 take a fork
+603 philosopher 0 is eating
+604 philosopher 4 is thinking
+604 philosopher 3 is sleeping
+604 philosopher 2 take a fork
+604 philosopher 2 is eating
+703 philosopher 1 is thinking
+703 philosopher 0 is sleeping
+703 philosopher 4 take a fork
+703 philosopher 4 is eating
+704 philosopher 3 is thinking
+704 philosopher 2 is sleeping
+704 philosopher 1 take a fork
+704 philosopher 1 is eating
+803 philosopher 0 is thinking
+803 philosopher 4 is sleeping
+803 philosopher 3 take a fork
+803 philosopher 3 is eating
+804 philosopher 1 is sleeping
+804 philosopher 2 is thinking
+804 philosopher 0 take a fork
+804 philosopher 0 is eating
+903 philosopher 4 is thinking
+903 philosopher 3 is sleeping
+904 philosopher 2 take a fork
+904 philosopher 2 is eating
+905 philosopher 1 is thinking
+905 philosopher 0 is sleeping
+905 philosopher 4 take a fork
+905 philosopher 4 is eating
+1004 philosopher 3 is thinking
+1004 philosopher 2 is sleeping
+1004 philosopher 1 take a fork
+1004 philosopher 1 is eating
+1005 philosopher 0 is thinking
+1005 philosopher 4 is sleeping
+1005 philosopher 3 take a fork
+1005 philosopher 3 is eating
+1104 philosopher 2 is thinking
+1104 philosopher 1 is sleeping
+1104 philosopher 0 take a fork
+1104 philosopher 0 is eating
+1106 philosopher 4 is thinking
+1106 philosopher 3 is sleeping
+1106 philosopher 2 take a fork
+1106 philosopher 2 is eating
+1204 philosopher 1 is thinking
+1204 philosopher 0 is sleeping
+1205 philosopher 4 take a fork
+1205 philosopher 4 is eating
+1206 philosopher 3 is thinking
+1206 philosopher 2 is sleeping
+1206 philosopher 1 take a fork
+1206 philosopher 1 is eating
+1305 philosopher 0 is thinking
+1305 philosopher 4 is sleeping
+1305 philosopher 3 take a fork
+1305 philosopher 3 is eating
+1306 philosopher 2 is thinking
+1306 philosopher 1 is sleeping
+1306 philosopher 0 take a fork
+1306 philosopher 0 is eating
+1405 philosopher 4 is thinking
+1405 philosopher 3 is sleeping
+1405 philosopher 2 take a fork
+1405 philosopher 2 is eating
+1407 philosopher 1 is thinking
+1407 philosopher 0 is sleeping
+1407 philosopher 4 take a fork
+1407 philosopher 4 is eating
+1506 philosopher 3 is thinking
+1506 philosopher 2 is sleeping
+1506 philosopher 1 take a fork
+1506 philosopher 1 is eating
+1507 philosopher 0 is thinking
+1507 philosopher 4 is sleeping
+1507 philosopher 3 take a fork
+1507 philosopher 3 is eating
+1606 philosopher 2 is thinking
+1606 philosopher 0 take a fork
+1606 philosopher 0 is eating
+1607 philosopher 4 is thinking

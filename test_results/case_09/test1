@@ -1,0 +1,21 @@
+0 philosopher 0 take a fork
+0 philosopher 0 is eating
+0 philosopher 2 take a fork
+0 philosopher 2 is eating
+101 philosopher 2 is sleeping
+101 philosopher 4 take a fork
+101 philosopher 4 is eating
+101 philosopher 0 is sleeping
+101 philosopher 1 take a fork
+101 philosopher 1 is eating
+201 philosopher 2 is thinking
+201 philosopher 0 is thinking
+201 philosopher 1 is sleeping
+201 philosopher 4 is sleeping
+201 philosopher 3 take a fork
+201 philosopher 3 is eating
+203 philosopher 2 is dead
+301 philosopher 1 is thinking
+302 philosopher 4 is thinking
+302 philosopher 3 is sleeping
+402 philosopher 3 is thinking

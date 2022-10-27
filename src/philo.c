@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wprintes <wprintes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:55:28 by wprintes          #+#    #+#             */
-/*   Updated: 2022/08/23 19:16:11 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/27 12:42:22 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 int valid_arguments(int argc, char **argv);
+void join_philos(t_philo *philo);
+void clean_mutexs(t_geral *geral);
+void free_philos(t_philo *philo);
 
 int main(int argc, char **argv)
 {
@@ -25,10 +28,53 @@ int main(int argc, char **argv)
 		philos = (t_philo *) malloc (sizeof (t_philo) * ft_atoi(argv[1]));
 		all_philos(ft_atoi(argv[1]), philos, &geral);
 		pthread_create(&geral.alive, NULL, alive_func, &geral);
-		pthread_join(geral.alive, NULL);	
-		pthread_mutex_destroy(&geral.lock);
+		pthread_join(geral.alive, NULL);
+		join_philos(philos);
+		clean_mutexs(&geral);
+		free(philos);
+		free(geral.forks);
 	}
 	return (1);
+}
+
+void join_philos(t_philo *philo)
+{
+	int i;
+
+	i = philo->geral->total_fork;
+	i--;
+	while(i >= 0)
+	{
+		pthread_join(philo[i].thread, NULL);
+		i--;
+	}
+}
+
+void clean_mutexs(t_geral *geral)
+{
+	int i;
+
+	i = geral->total_fork;
+	i--;
+	while(i >= 0)
+	{
+		pthread_mutex_destroy(&geral->forks[i]);
+		i--;
+	}
+	pthread_mutex_destroy(&geral->lock);
+}
+
+void free_philos(t_philo *philo)
+{
+	int i;
+
+	i = philo->geral->total_fork;
+	i--;
+	while(i >= 0)
+	{
+		free(&philo[i]);
+		i--;
+	}
 }
 
 int	ft_isdigit(char *c)
