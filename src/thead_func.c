@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:28:38 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/28 23:54:38 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/29 00:15:00 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,15 @@ void	*alive_func(void *parameter)
 				show_info(&philo[i], "dead");
 				geral->death = 1;
 			}
+			if (geral->all_full == geral->total_fork)
+			{
+				geral->death = 1;
+				break ;
+			}
 			i--;
 		}
 		usleep(geral->t_die);
 	}
-	pthread_detach(geral->alive);
 	return (NULL);
 }
 
