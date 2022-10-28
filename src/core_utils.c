@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 21:44:49 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/27 22:17:35 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/28 23:51:12 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	eat(t_philo *philo)
 void	sleep_think(t_philo *philo)
 {
 	show_info(philo, "sleep");
-	usleep(philo->geral->t_sleep);
+	if (philo->geral->death != 1)
+		usleep(philo->geral->t_sleep);
 	show_info(philo, "think");
 	usleep(1500);
 }
@@ -51,10 +52,7 @@ void	show_info(t_philo *philo, char *type)
 		printf(" %d is sleeping\n", philo->id);
 	if (ft_strncmp(type, "think", 5) == 0 && philo->geral->death != 1)
 		printf(" %d is thinking\n", philo->id);
-	if (ft_strncmp(type, "dead", 4) == 0)
-	{
-		printf("%lu philosopher", passed_time(philo->geral));
+	if (ft_strncmp(type, "dead", 4) == 0 && philo->geral->death != 1)
 		printf(" %d is died\n", philo->id);
-	}
 	pthread_mutex_unlock(&philo->geral->lock);
 }

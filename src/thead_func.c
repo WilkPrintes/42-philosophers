@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:28:38 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/27 21:45:09 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/28 23:54:38 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,24 @@ void	sleep_think(t_philo *philo);
 void	*alive_func(void *parameter)
 {
 	t_geral	*geral;
+	t_philo	*philo;
+	int		i;
 
-	geral = (t_geral *) parameter;
-	while (1)
+	philo = (t_philo *) parameter;
+	geral = philo->geral;
+	while (geral->death == 0)
 	{
-		if (geral->death != 0)
-			break ;
-		if (geral->all_full == geral->total_fork)
-			geral->death++;
-		usleep(1000);
+		i = geral->total_fork - 1;
+		while (i >= 0)
+		{
+			if (current_time() - philo[i].last_eat > geral->t_die)
+			{
+				show_info(&philo[i], "dead");
+				geral->death = 1;
+			}
+			i--;
+		}
+		usleep(geral->t_die);
 	}
 	pthread_detach(geral->alive);
 	return (NULL);
@@ -40,8 +49,7 @@ void	*philo_core(void *parameter)
 
 	philo = (t_philo *) parameter;
 	t_init = philo->geral->t_init;
-	while ((current_time() - philo->last_eat) < philo->geral->t_die
-		&& philo->geral->death == 0)
+	while (philo->geral->death == 0)
 	{
 		eat(philo);
 		if (philo->fork_right != NULL)
@@ -53,11 +61,6 @@ void	*philo_core(void *parameter)
 		}
 		else
 			usleep(philo->geral->t_die);
-	}
-	if (philo->geral->death != 1)
-	{
-		philo->geral->death++;
-		show_info(philo, "dead");
 	}
 	return (NULL);
 }

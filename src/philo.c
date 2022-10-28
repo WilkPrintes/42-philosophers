@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:55:28 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/27 20:51:18 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/28 23:39:27 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 		init_geral(&geral, argv);
 		philos = (t_philo *) malloc (sizeof (t_philo) * ft_atoi(argv[1]));
 		all_philos(ft_atoi(argv[1]), philos, &geral);
-		pthread_create(&geral.alive, NULL, alive_func, &geral);
+		pthread_create(&geral.alive, NULL, alive_func, philos);
 		pthread_join(geral.alive, NULL);
 		join_philos(philos);
 		clean_mutexs(&geral);

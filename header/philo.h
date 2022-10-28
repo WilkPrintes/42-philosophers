@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:56:10 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/27 21:48:28 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/28 23:54:53 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_philo
 	int				id;
 	int				eat;
 	t_geral			*geral;
-	time_t			last_eat;
+	_Atomic time_t	last_eat;
 	pthread_mutex_t	*fork_left;
 	pthread_mutex_t	*fork_right;
 }	t_philo;
