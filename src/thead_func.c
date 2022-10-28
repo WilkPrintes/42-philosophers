@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:28:38 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/29 00:15:00 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/29 01:18:50 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@ void	*alive_func(void *parameter)
 		i = geral->total_fork - 1;
 		while (i >= 0)
 		{
-			if (current_time() - philo[i].last_eat > geral->t_die)
-			{
+			if (current_time() - philo[i].last_eat > geral->t_die
+				&& philo->geral->m_eat != philo->eat)
 				show_info(&philo[i], "dead");
-				geral->death = 1;
-			}
 			if (geral->all_full == geral->total_fork)
 			{
 				geral->death = 1;

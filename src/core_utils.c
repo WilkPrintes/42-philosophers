@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 21:44:49 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/28 23:51:12 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/29 01:19:11 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ void	show_info(t_philo *philo, char *type)
 	if (ft_strncmp(type, "think", 5) == 0 && philo->geral->death != 1)
 		printf(" %d is thinking\n", philo->id);
 	if (ft_strncmp(type, "dead", 4) == 0 && philo->geral->death != 1)
+	{
 		printf(" %d is died\n", philo->id);
+		philo->geral->death = 1;
+	}
 	pthread_mutex_unlock(&philo->geral->lock);
 }

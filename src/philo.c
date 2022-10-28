@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:55:28 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/28 23:39:27 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/29 01:13:58 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	valid_arguments(int argc, char **argv)
 	}
 	while (argv[i])
 	{
-		if (ft_isdigit(argv[i]) == 1)
+		if (ft_atoi(argv[1]) == 0 || ft_isdigit(argv[i]) == 1)
 			return (printf("Invalid type of arguments\n"));
 		i++;
 	}
