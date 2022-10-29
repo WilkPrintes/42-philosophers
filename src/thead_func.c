@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:28:38 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/29 01:18:50 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:44:19 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,28 @@ void	sleep_think(t_philo *philo);
 
 void	*alive_func(void *parameter)
 {
-	t_geral	*geral;
+	t_core	*core;
 	t_philo	*philo;
 	int		i;
 
 	philo = (t_philo *) parameter;
-	geral = philo->geral;
-	while (geral->death == 0)
+	core = philo->core;
+	while (core->death == 0)
 	{
-		i = geral->total_fork - 1;
+		i = core->total_fork - 1;
 		while (i >= 0)
 		{
-			if (current_time() - philo[i].last_eat > geral->t_die
-				&& philo->geral->m_eat != philo->eat)
+			if (current_time() - philo[i].last_eat > core->t_die
+				&& philo->core->m_eat != philo->eat)
 				show_info(&philo[i], "dead");
-			if (geral->all_full == geral->total_fork)
+			if (core->all_full == core->total_fork)
 			{
-				geral->death = 1;
+				core->death = 1;
 				break ;
 			}
 			i--;
 		}
-		usleep(geral->t_die);
+		usleep(core->t_die);
 	}
 	return (NULL);
 }
@@ -50,19 +50,19 @@ void	*philo_core(void *parameter)
 	time_t	t_init;
 
 	philo = (t_philo *) parameter;
-	t_init = philo->geral->t_init;
-	while (philo->geral->death == 0)
+	t_init = philo->core->t_init;
+	while (philo->core->death == 0)
 	{
 		eat(philo);
 		if (philo->fork_right != NULL)
 		{
 			philo->eat++;
-			if (philo->geral->m_eat != -1 && philo->geral->m_eat == philo->eat)
-				return (philo->geral->all_full++, NULL);
+			if (philo->core->m_eat != -1 && philo->core->m_eat == philo->eat)
+				return (philo->core->all_full++, NULL);
 			sleep_think(philo);
 		}
 		else
-			usleep(philo->geral->t_die);
+			usleep(philo->core->t_die);
 	}
 	return (NULL);
 }

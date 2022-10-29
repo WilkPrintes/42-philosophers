@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:55:28 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/29 01:13:58 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:44:15 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 int		valid_arguments(int argc, char **argv);
 void	join_philos(t_philo *philo);
-void	clean_mutexs(t_geral *geral);
+void	clean_mutexs(t_core *core);
 void	free_philos(t_philo *philo);
 
 int	main(int argc, char **argv)
 {
 	t_philo	*philos;
-	t_geral	geral;
+	t_core	core;
 
 	if (valid_arguments(argc, argv) == 0)
 	{
-		init_geral(&geral, argv);
+		init_core(&core, argv);
 		philos = (t_philo *) malloc (sizeof (t_philo) * ft_atoi(argv[1]));
-		all_philos(ft_atoi(argv[1]), philos, &geral);
-		pthread_create(&geral.alive, NULL, alive_func, philos);
-		pthread_join(geral.alive, NULL);
+		all_philos(ft_atoi(argv[1]), philos, &core);
+		pthread_create(&core.alive, NULL, alive_func, philos);
+		pthread_join(core.alive, NULL);
 		join_philos(philos);
-		clean_mutexs(&geral);
+		clean_mutexs(&core);
 		free(philos);
-		free(geral.forks);
+		free(core.forks);
 	}
 	return (1);
 }
@@ -41,7 +41,7 @@ void	join_philos(t_philo *philo)
 {
 	int	i;
 
-	i = philo->geral->total_fork;
+	i = philo->core->total_fork;
 	i--;
 	while (i >= 0)
 	{
@@ -50,25 +50,25 @@ void	join_philos(t_philo *philo)
 	}
 }
 
-void	clean_mutexs(t_geral *geral)
+void	clean_mutexs(t_core *core)
 {
 	int	i;
 
-	i = geral->total_fork;
+	i = core->total_fork;
 	i--;
 	while (i >= 0)
 	{
-		pthread_mutex_destroy(&geral->forks[i]);
+		pthread_mutex_destroy(&core->forks[i]);
 		i--;
 	}
-	pthread_mutex_destroy(&geral->lock);
+	pthread_mutex_destroy(&core->lock);
 }
 
 void	free_philos(t_philo *philo)
 {
 	int	i;
 
-	i = philo->geral->total_fork;
+	i = philo->core->total_fork;
 	i--;
 	while (i >= 0)
 	{

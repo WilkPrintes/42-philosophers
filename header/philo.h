@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:56:10 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/28 23:54:53 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:45:43 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <pthread.h>
 # include <stdlib.h>
 
-typedef struct s_geral
+typedef struct s_core
 {
 	pthread_t		alive;
 	pthread_mutex_t	*forks;
@@ -27,20 +27,19 @@ typedef struct s_geral
 	_Atomic int		death;
 	_Atomic int		all_full;
 	int				m_eat;
-	int				exit;
 	time_t			t_sleep;
 	time_t			t_die;
 	time_t			t_eat;
 	time_t			t_init;
 	pthread_mutex_t	lock;
-}	t_geral;
+}	t_core;
 
 typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
-	int				eat;
-	t_geral			*geral;
+	_Atomic int		eat;
+	t_core			*core;
 	_Atomic time_t	last_eat;
 	pthread_mutex_t	*fork_left;
 	pthread_mutex_t	*fork_right;
@@ -49,10 +48,10 @@ typedef struct s_philo
 long	ft_atoi(const char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_isdigit(char *c);
-void	all_philos(int c_philos, t_philo *philos, t_geral *geral);
-void	init_geral(t_geral *geral, char **argv);
+void	all_philos(int c_philos, t_philo *philos, t_core *core);
+void	init_core(t_core *core, char **argv);
 time_t	current_time(void);
-time_t	passed_time(t_geral *geral);
+time_t	passed_time(t_core *core);
 void	*philo_core(void *parameter);
 void	*alive_func(void *parameter);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
