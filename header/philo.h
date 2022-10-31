@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:56:10 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/29 16:45:43 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/31 03:55:17 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_core
 	_Atomic int		death;
 	_Atomic int		all_full;
 	int				m_eat;
+	int				exit;
 	time_t			t_sleep;
 	time_t			t_die;
 	time_t			t_eat;

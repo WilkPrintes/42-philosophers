@@ -6,7 +6,7 @@
 /*   By: wprintes <wprintes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:24:19 by wprintes          #+#    #+#             */
-/*   Updated: 2022/10/29 16:47:27 by wprintes         ###   ########.fr       */
+/*   Updated: 2022/10/31 03:55:18 by wprintes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_mutex(t_core *core)
 	}
 }
 
-void	init_philo(t_philo *philo, t_core *core)
+void	create_philo(t_philo *philo, t_core *core)
 {
 	philo->eat = 0;
 	philo->core = core;
@@ -59,7 +59,7 @@ void	all_philos(int c_philos, t_philo *philos, t_core *core)
 	i = 0;
 	while (i < c_philos)
 	{
-		init_philo(&philos[i], core);
+		create_philo(&philos[i], core);
 		philos[i].id = i + 1;
 		philos[i].fork_left = &core->forks[i];
 		if (c_philos > 1)
